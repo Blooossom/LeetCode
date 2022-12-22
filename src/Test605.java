@@ -14,21 +14,31 @@ public class Test605 {
         System.out.println(canPlaceFlowers(arr, T));
     }
     public static boolean canPlaceFlowers(int[] flowerbed, int n){
-        boolean answer = true;
-        if (flowerbed[0] == 0 && flowerbed[1] == 1) {
-
+        if(flowerbed.length == 0 || n <= 0){
+            return true;
         }
-        for (int i = 1; i < flowerbed.length - 1; i++) {
-            if(flowerbed[i] == flowerbed[i - 1] && flowerbed[i] == flowerbed[i + 1]){
-                if (flowerbed[i] == 0){
-                    n--;
-                    flowerbed[i] = 1;
-                }
+        int len = flowerbed.length;
+        for (int i = 0; i < len; i++) {
+            int p;
+            int q;
+            if (i == 0) {
+                p = 0;
+            } else {
+                p = flowerbed[i - 1];
+            }
+            if(i == len - 1){
+                q = 0;
+            } else {
+                q = flowerbed[i + 1];
+            }
+            if (p == 0 && q == 0) {
+                flowerbed[i] = 1;
+                n--;
+            }
+            if (n <= 0) {
+                return true;
             }
         }
-        if (n != 0) {
-            answer = false;
-        }
-        return answer;
+        return false;
     }
 }
