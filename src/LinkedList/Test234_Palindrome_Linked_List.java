@@ -1,3 +1,5 @@
+package LinkedList;
+
 class Test234_Palindrome_Linked_List {
     public boolean isPalindrome(ListNode head){
 
@@ -28,10 +30,17 @@ class Test234_Palindrome_Linked_List {
             if (center == null) {
                 break;
             }
-            ListNode temp = center.next;
-            center.next= prev;
-            prev = center;
-            center = temp;
+            //12
+            ListNode temp = center.next;//temp = 2
+            center.next= prev;//center.next = null
+            prev = center;//prev = 1
+            center = temp;//center = 2
+            /*
+            temp = null;
+            center next = 1
+            prev = 2
+            center = null;
+             */
         }
         return prev;
     }

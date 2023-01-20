@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Test18_4Sum {
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    }
+    class Solution {
     static List<List<Integer>> fourSum(int[] arr, int target) {
         HashSet<List<Integer>> set = new HashSet<>();
         Arrays.sort(arr);
@@ -32,5 +30,6 @@ public class Test18_4Sum {
             }
         }
         return new ArrayList<>(set);
+    }
     }
 }

@@ -1,12 +1,7 @@
-import java.io.*;
 import java.util.HashSet;
 
 public class Test202_Happy_Number {
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int input = Integer.parseInt(br.readLine());
-        System.out.println(isHappy(input));
-    }
+    class Solution{
     static boolean isHappy(int param) {
         HashSet<Integer> set = new HashSet<>();
 
@@ -27,4 +22,5 @@ public class Test202_Happy_Number {
         }
         return true;
     }
+}
 }
