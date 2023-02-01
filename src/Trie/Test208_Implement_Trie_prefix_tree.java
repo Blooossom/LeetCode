@@ -1,0 +1,56 @@
+package Trie;
+
+import java.util.HashMap;
+
+public class Test208_Implement_Trie_prefix_tree {
+    class TrieNode {
+        HashMap<Character, TrieNode> children;
+        boolean isWord;
+
+        public TrieNode() {
+            this.children = new HashMap<>();
+            this.isWord = false;
+        }
+    }
+    class Trie {
+        TrieNode root;
+
+        public Trie() {
+            root = new TrieNode();
+        }
+        public void insert(String word) {
+            char[] letters = word.toCharArray();
+            TrieNode temp = root;
+            for (char letter:letters) {
+                TrieNode next;
+                if (temp.children.containsKey(letter)) {
+                    next = temp.children.get(letter);
+                }
+                else {
+                    next = new TrieNode();
+                    temp.children.put(letter, next);
+                }
+                temp = next;
+            }
+            temp.isWord = true;
+        }
+        public boolean search(String word) {
+            TrieNode searchNode = find(word);
+            return searchNode != null && searchNode.isWord;
+        }
+        public TrieNode find(String word) {
+            char[] letters = word.toCharArray();
+            TrieNode temp = root;
+            for (char letter:letters) {
+                if (!temp.children.containsKey(letter)) {
+                    return null;
+                }
+                temp = temp.children.get(letter);
+            }
+            return temp;
+        }
+        public boolean startsWith(String prefix) {
+            return find(prefix) != null;
+        }
+    }
+}

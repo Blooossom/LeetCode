@@ -19,28 +19,29 @@ public class Test572_Subtree_of_Another_Tree {
             this.left = left;
         }
     }
+
     class Solution {
         public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-            if (root == null || subRoot == null) {
-                return root == null && subRoot == null;
+            if (root == null) {
+                return false;
             }
-            else if (recursive(root, subRoot)) {
+            return recursive(root, subRoot)
+                    || isSubtree(root.left, subRoot)
+                    || isSubtree(root.right, subRoot);
+        }
+
+        public boolean recursive(TreeNode root, TreeNode subRoot) {
+            if (root == null && subRoot == null) {
                 return true;
             }
-            else {
-                return recursive(root.left, subRoot) || recursive(root.right, subRoot);
+            if (root == null || subRoot == null) {
+                return false;
             }
-        }
-    }
-    public boolean recursive(TreeNode root, TreeNode subRoot) {
-        if (root == null || subRoot == null) {
-            return root == null && subRoot == null;
-        }
-        else if (root.val == subRoot.val) {
-            return recursive(root.left, subRoot.left) && recursive(root.right, subRoot.right);
-        }
-        else {
-            return false;
+            if (root.val != subRoot.val) {
+                return false;
+            }
+            return recursive(root.left, subRoot.left)
+                    && recursive(root.right, subRoot.right);
         }
     }
 }
